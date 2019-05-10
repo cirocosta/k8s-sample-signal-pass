@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: explicit
+spec:
+  containers:
+  - args: [ sample-signal-pass ]
+    image: cirocosta/sample-signal-pass:with-signal-defined
+    imagePullPolicy: Always
+    name: with
+    lifecycle:
+      preStop:
+        exec:
+          command: [ kill, -s, SIGUSR1, '1' ]
+  - args: [ sample-signal-pass ]
+    image: cirocosta/sample-signal-pass:without-signal-defined
+    imagePullPolicy: Always
+    name: without
+    lifecycle:
+      preStop:
+        exec:
+          command: [ kill, -s, SIGUSR1, '1' ]
