@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: explicit
+  labels:
+    app: explicit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: explicit
+  template:
+    metadata:
+      labels:
+        app: explicit
+    spec:
+      containers:
+      - args:
+        - sample-signal-pass
+        image: cirocosta/sample-signal-pass
+        imagePullPolicy: Always
+        name: explicit
+        lifecycle:
+          preStop:
+            exec:
+              command:
+                - kill
+                - -s
+                - SIGUSR1
+                - '1'
+      restartPolicy: Always

@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  with-signal-defined:
+    container_name: with-signal-defined
+    image: cirocosta/sample-signal-pass:with-signal-defined
+    build: .
+    command: sample-signal-pass
+
+  without-signal-defined:
+    container_name: without-signal-defined
+    image: cirocosta/sample-signal-pass:without-signal-defined
+    build: .
+    command: sample-signal-pass

@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: implicit
+  labels:
+    app: implicit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: implicit
+  template:
+    metadata:
+      labels:
+        app: implicit
+    spec:
+      containers:
+      - args:
+        - sample-signal-pass
+        image: cirocosta/sample-signal-pass
+        imagePullPolicy: Always
+        name: implicit
+      restartPolicy: Always
