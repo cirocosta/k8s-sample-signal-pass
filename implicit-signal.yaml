@@ -17,7 +17,11 @@ spec:
       containers:
       - args:
         - sample-signal-pass
-        image: cirocosta/sample-signal-pass
+        image: cirocosta/sample-signal-pass:with-signal-defined
         imagePullPolicy: Always
-        name: implicit
-      restartPolicy: Always
+        name: with
+      - args:
+        - sample-signal-pass
+        image: cirocosta/sample-signal-pass:without-signal-defined
+        imagePullPolicy: Always
+        name: without
